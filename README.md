@@ -12,7 +12,7 @@ Run the following commands to execute the script:
 ```
 cd bulk-update-github
 docker build -t bulk-update-github .
-docker run --rm -t bulk-update-github python bulk-update-github.py [-d] -o GITHUBORG -t GITHUBTKN -l DIRLOOKUP -s STRINGOLD -r STRINGNEW -m MSGCOMMIT
+docker run --rm -t bulk-update-github python bulk-update-github.py [-d] -o GITHUBORG -t GITHUBTKN -l DIRLOOKUP -s STRINGOLD -r STRINGNEW -m MSGCOMMIT -n USERNAME -e USEREMAIL
 ```
 
 ## bulk-check-github-actions

@@ -11,6 +11,8 @@ parser.add_argument('-l', '--dirlookup', help='set directory to lookup', require
 parser.add_argument('-s', '--stringold', help='set string to search for', required=True)
 parser.add_argument('-r', '--stringnew', help='set string to replace with', required=True)
 parser.add_argument('-m', '--msgcommit', help='set message for the commit', required=True)
+parser.add_argument('-n', '--username', help='set name for the user of the commit', required=True)
+parser.add_argument('-e', '--useremail', help='set email for the user of the commit', required=True)
 args = parser.parse_args()
 
 
@@ -47,7 +49,7 @@ def update(repos):
                     else:
                         repo_cloned.index.add(args.dirlookup)
                         repo_cloned.index.commit(args.msgcommit)
-                        repo_cloned.remotes.origin.push()
+                        repo_cloned.remotes.origin.push().raise_if_error()
                         print("Updated.")
                 else:
                     print("No files with changes.\nSkipped.")
@@ -60,6 +62,9 @@ def update(repos):
 
 
 if __name__ == '__main__':
+    os.system(f"git config --global user.name '{args.username}'")
+    os.system(f"git config --global user.email '{args.useremail}'")
+
     repos = Github(args.githubtkn).get_organization(args.githuborg).get_repos()
     print(f"\n{repos.totalCount} repos in total.")
     update(repos)
