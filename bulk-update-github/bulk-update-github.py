@@ -35,10 +35,10 @@ def update(repos):
 
                     new_content = content.replace(args.stringold, args.stringnew)
 
-                    with open(file, 'w') as f:
-                        if new_content != content:
-                            files_updated += 1
+                    if new_content != content:
+                        with open(file, 'w') as f:
                             f.write(new_content)
+                            files_updated += 1
 
                 if files_updated > 0:
                     print(f"{files_updated} file(s) with changes.")
