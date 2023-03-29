@@ -1,6 +1,6 @@
 FROM python:3.11.2-slim-bullseye
 
-WORKDIR /bulk-update-github
+WORKDIR /github-maintenance
 
 RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
 
